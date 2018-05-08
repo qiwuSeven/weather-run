@@ -5,60 +5,16 @@ class Drawer {
     this.running = false
     this.width = this.el.width
     this.height = this.el.height
-    this.character = {
-      x: 240,
-      y: 300 - 20,
-      height: 20,
-      width: 20,
-      jumpTime: 500,
-      jumpHeight: 200,
-      jump () {
-        // this.jumpHeight = voice
-        let loopTime = this.jumpTime / (1000 / 60)
-        let loopHeight = this.jumpHeight / loopTime / 2
-        console.log('jump')
-        for(let i = 0; i < loopTime; i++) {
-          setTimeout(() => {
-            if (i < loopTime / 2) {
-              this.y -= loopHeight
-            } else {
-              this.y += loopHeight
-            }
-          }, 1000/60 * i)
-        }
-      },
-      nextTick () {
-
-      }
-    }
-    this.blocks = {
-      _blocks: [{
-        width: 20,
-        height: 20,
-        x: 500,
-        y: 300 - 20,
-      },
-      {
-        width: 20,
-        height: 20,
-        x: 500 + 150,
-        y: 300 - 20,
-      }],
-      move () {
-        this._blocks.map((item, index) => {
-          if (item.x < 0) {
-            item.x = 500
-          }
-          item.x -= 5
-        })
-      }
-    }
+    this.character = new Character()
+    this.blocks = new Blocks()
+    this.backGround = new BackGround()
+    this.backgroundOffSet = 0
   }
   draw (x) {
     this.ctx.clearRect(0, 0, 500, 500)
     this.drawBackGround()
     this.blocks.move('left')
-    this.drawBlocks(offset++ % 500)
+    this.drawBlocks()
 
     this.ctx.fillStyle = 'red'
     this.ctx.fillRect(this.character.x, this.character.y, this.character.width, this.character.height)
@@ -87,13 +43,10 @@ class Drawer {
     return r
   }
   onFinish () {
+
   }
-  drawBackGround (offset) {
-    this.ctx.beginPath()
-    this.ctx.moveTo(0, 300)
-    this.ctx.lineTo(this.width, 300)
-    this.ctx.closePath()
-    this.ctx.stroke()
+  drawBackGround () {
+    this.backGround.draw(this)
   }
   drawBlocks () {
     this.ctx.fillStyle = 'green'

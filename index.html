@@ -5,26 +5,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>weather run</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script>
   <script src="draw.js"></script>
+  <script src="background.js"></script>
+  <script src="character.js"></script>
+  <script src="blocks.js"></script>
+  <script src="main.js"></script>
 </head>
 <body>
   <canvas id="screen" width="500px" height="500px"></canvas>
+  <script>
+    let game = new Game('screen')
+    game.addEventListener('finish', () => {
+      console.log('finish')
+    })
+    document.addEventListener('keydown', game.jump.bind(game))
+  </script>
 </body>
-<script>
-  let drawer = new Drawer('screen')
-  drawer.onFinish = function () {
-    console.log('main finish')
-  }
-  drawer.start()
-  drawer.onFinish = function () {
-    console.log('finish')
-    drawer.stop()
-  }
-  function jump () {
-    drawer.character.jump()
-  }
-  document.addEventListener('keydown', jump)
-</script>
 </html>
