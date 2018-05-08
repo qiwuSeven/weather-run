@@ -2,22 +2,33 @@ class Drawer {
   constructor (id) {
     this.el = document.getElementById(id)
     this.ctx = this.el.getContext('2d')
+    this.running = false
+    this.width = this.el.width
+    this.height = this.el.height
     this.character = {
       x: 240,
-      y: 240,
+      y: 300 - 20,
       height: 20,
       width: 20,
-      jump (voice) {
+      jumpTime: 500,
+      jumpHeight: 200,
+      jump () {
+        // this.jumpHeight = voice
+        let loopTime = this.jumpTime / (1000 / 60)
+        let loopHeight = this.jumpHeight / loopTime / 2
         console.log('jump')
-        for(let i = 0; i < 40; i++) {
+        for(let i = 0; i < loopTime; i++) {
           setTimeout(() => {
-            if (i < 20) {
-              this.y -= 5
+            if (i < loopTime / 2) {
+              this.y -= loopHeight
             } else {
-              this.y += 5
+              this.y += loopHeight
             }
           }, 1000/60 * i)
         }
+      },
+      nextTick () {
+
       }
     }
     this.blocks = {
@@ -25,33 +36,33 @@ class Drawer {
         width: 20,
         height: 20,
         x: 500,
-        y: 240,
+        y: 300 - 20,
+      },
+      {
+        width: 20,
+        height: 20,
+        x: 500 + 150,
+        y: 300 - 20,
       }],
-      move (direction) {
-        switch (direction) {
-          case 'left': {
-            this._blocks.map((item, index) => {
-              if (item.x < 0) {
-                item.x = 500
-              }
-              item.x -= 5
-            })
-          } break
-        }
+      move () {
+        this._blocks.map((item, index) => {
+          if (item.x < 0) {
+            item.x = 500
+          }
+          item.x -= 5
+        })
       }
     }
-    this.speed = 1
-    this.running = false
   }
   draw (x) {
     this.ctx.clearRect(0, 0, 500, 500)
+    this.drawBackGround()
     this.blocks.move('left')
-    this.ctx.fillStyle = 'green'
-    this.blocks._blocks.map((item) => {
-      this.ctx.fillRect(item.x, item.y, item.width, item.height)
-    })
+    this.drawBlocks(offset++ % 500)
+
     this.ctx.fillStyle = 'red'
     this.ctx.fillRect(this.character.x, this.character.y, this.character.width, this.character.height)
+
     if (this.isCrash()) {
       this.onFinish()
     }
@@ -77,7 +88,19 @@ class Drawer {
   }
   onFinish () {
   }
-
+  drawBackGround (offset) {
+    this.ctx.beginPath()
+    this.ctx.moveTo(0, 300)
+    this.ctx.lineTo(this.width, 300)
+    this.ctx.closePath()
+    this.ctx.stroke()
+  }
+  drawBlocks () {
+    this.ctx.fillStyle = 'green'
+    this.blocks._blocks.map((item) => {
+      this.ctx.fillRect(item.x, item.y, item.width, item.height)
+    })
+  }
 }
 function crash (r1, r2) {
   let r = {
