@@ -8,11 +8,23 @@
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   <script src="main.js"></script>
   <script src="draw.js"></script>
-  <script>
-    let drawer = new Drawer('screen')
-  </script>
 </head>
 <body>
   <canvas id="screen" width="500px" height="500px"></canvas>
 </body>
+<script>
+  let drawer = new Drawer('screen')
+  drawer.onFinish = function () {
+    console.log('main finish')
+  }
+  drawer.start()
+  drawer.onFinish = function () {
+    console.log('finish')
+    drawer.stop()
+  }
+  function jump () {
+    drawer.character.jump()
+  }
+  document.addEventListener('keydown', jump)
+</script>
 </html>
