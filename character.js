@@ -1,11 +1,41 @@
 class Character {
   constructor () {
+
+    // 图像绘制时的坐标和大小
+    this.renderWidth = 70;
+    this.renderHeight = 70;
+    // 求一个人的宽和高
+    this.pwidth = 300;
+    this.pheight = 300;       
+    this.currentFrame = 1;
+
     this.x = 240
     this.y = 350 - 20
-    this.height = 20
-    this.width = 20
+    this.height = 70
+    this.width = 70
     this.jumpTime = 500
     this.jumpHeight = 500
+    this.personImg = new Image()
+    this.personImg.src = 'img/person1.png'
+    this.personImg1 = new Image()
+    this.personImg1.src = 'img/person2.png'
+    this.personImg2 = new Image()
+    this.personImg2.src = 'img/person3.png'
+    this.img = 0
+    this.pic = [this.personImg, this.personImg1]
+    setInterval(() => {
+      this.img = this.img ? 0 : 1
+    }, 1000 / 60 * 20)
+  }
+  draw(drawer){
+    this.drawRoad(drawer)
+  }
+  drawRoad(drawer){
+    if(this.y<300){
+      drawer.ctx.drawImage( this.personImg2,0, 0, this.pwidth, this.pheight,this.x, this.y, this.renderWidth, this.renderHeight);
+    } else {
+      drawer.ctx.drawImage( this.pic[this.img],0, 0, this.pwidth, this.pheight,this.x, this.y, this.renderWidth, this.renderHeight);
+    }
   }
   jump () {
     // this.jumpHeight = voice

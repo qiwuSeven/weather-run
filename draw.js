@@ -16,9 +16,10 @@ class Drawer {
     this.blocks.move('left')
     this.drawBlocks()
 
-    this.ctx.fillStyle = 'red'
-    this.ctx.fillRect(this.character.x, this.character.y, this.character.width, this.character.height)
+    this.character.draw(this)
 
+    // this.ctx.fillStyle = 'red'
+    // this.ctx.fillRect(this.character.x, this.character.y, this.character.width, this.character.height)
     if (this.isCrash()) {
       this.onFinish()
     }
