@@ -6,6 +6,7 @@
 * drawer.js
 * chracter.js
 * blocks.js
+* sound.js
 
   (未指定↓)
 
@@ -38,6 +39,10 @@
 提供障碍物队列 ==> drawer
 
 （箱子）
+
+### sound.js 
+
+声音监听的模块
 
 ### weather.js（未指定）
 
