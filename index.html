@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>weather run</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="draw.js"></script>
-  <script src="background.js"></script>
-  <script src="character.js"></script>
-  <script src="blocks.js"></script>
-  <script src="main.js"></script>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>weather run</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="draw.js"></script>
+    <script src="background.js"></script>
+    <script src="character.js"></script>
+    <script src="blocks.js"></script>
+    <script src="main.js"></script>
+    <script src="sound.js"></script>
 </head>
 <body>
-  <canvas id="screen" width="500px" height="500px"></canvas>
-  <script>
-    let game = new Game('screen')
-    game.addEventListener('finish', () => {
-      console.log('finish')
-    })
-    document.addEventListener('keydown', game.jump.bind(game))
-  </script>
+<canvas id="screen" width="500px" height="500px"></canvas>
+<script>
+	let game = new Game('screen');
+	let sound = new Sound();
+	sound.startSound(game, 3);
+	game.addEventListener('finish', () => {
+		sound.stopSound();
+		console.log('finish')
+	});
+	//document.addEventListener('keydown', game.jump.bind(game))
+</script>
 </body>
 </html>
