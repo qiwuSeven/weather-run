@@ -66,7 +66,7 @@ function crash (r1, r2) {
     x: r2.x + r2.width,
     y: r2.y + r2.height
   }
-  if (p.x > r.x && p.y > r.y && p.x < r.x + r.w && p.y < r.y + r.y + r.h) {
+  if (p.x > r.x && p.y > r.y && p.x < r.x + r.w && p.y < r.y + r.h) {
     return true
   } else {
     return false

@@ -1,7 +1,7 @@
 class Character {
   constructor () {
     this.x = 240
-    this.y = 300 - 20
+    this.y = 350 - 20
     this.height = 20
     this.width = 20
     this.jumpTime = 500
