@@ -1,0 +1,32 @@
+#star{
+	display: inline-block;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	float: left;
+	font-size: 30px;
+	font-weight: 700;
+	color: #ffffff;
+	animation-name: title;
+	animation-duration: 1s;
+	animation-timing-function: ease;
+	animation-iteration-count: infinite;
+}
+p{
+	margin: 0;
+}
+@keyframes title{
+	25% {
+		transform: skew(-10deg);
+	}
+			 
+	50% {
+		transform: skew(0deg);
+	}
+	75%{
+	transform: skew(10deg);
+	}
+	100%{
+		transform: skew(0deg);
+	}
+}
