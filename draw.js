@@ -3,6 +3,7 @@ class Drawer {
     this.el = document.getElementById(id)
     this.el.addEventListener('click', () => {
       if (this.shellScreen.state === 'start') {
+        this.character.startCount()
         this.shellScreen.state = 'running'
         this.blocks.init()
       } else if (this.shellScreen.state === 'stop') {
@@ -37,6 +38,9 @@ class Drawer {
     this.ctx.clearRect(0, 0, 500, 500)
     this.backGround.draw(this)
     this.blocks.draw(this)
+    if (this.shellScreen.state === 'start') {
+      this.character.startCount()
+    }
     this.character.draw(this)
     this.shellScreen.draw(this)
 

@@ -12,7 +12,8 @@ class Character {
     this.harmable = true
     this.life = 5
 
-    
+    this.score = 0
+
     this.constol = new Control();
     this.constol.render();
 
@@ -31,6 +32,10 @@ class Character {
     }, 1000 / 60 * 20)
   }
   draw (drawer) {
+    this.score = this.score + 1
+    drawer.ctx.font = "30px serif"
+    drawer.ctx.fillStyle = '#fff'
+    drawer.ctx.fillText(this.score, 400, 470)
     if (!this.transPic) {
       if (this.y < 300) {
         drawer.ctx.drawImage(this.JumpImg, this.x, this.y, this.width, this.height)
@@ -75,6 +80,10 @@ class Character {
   }
   init () {
     this.life = 5
+    this.score = 0
     this.constol.addHeart(5)
+  }
+  startCount () {
+    this.score = -1
   }
 }
