@@ -7,7 +7,7 @@ class Game {
     switch (type) {
       case 'finish': {
         this.drawer.onFinish = () => {
-          this.drawer.stop()
+          this.stop()
           callback.bind(this, ...args)
         }
       } break
