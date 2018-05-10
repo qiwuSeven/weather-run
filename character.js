@@ -1,45 +1,43 @@
 class Character {
-  constructor () {
+  constructor (option) {
+    ;({
+      x: this.x,
+      y: this.y,
+      height: this.height,
+      width: this.width,
+      jumpDuration: this.jumpDuration,
+      jumpHeight: this.jumpHeight,
+    } = option)
 
-    // 图像绘制时的坐标和大小
-    this.renderWidth = 60;
-    this.renderHeight = 75;
-    // 求一个人的宽和高
-    this.pwidth = 171;
-    this.pheight = 227;       
-    this.currentFrame = 1;
+    this.harmable = true
+    this.life = 5
 
-    this.x = 240
-    this.y = 350 - 20
-    this.height = 75
-    this.width = 60
-    this.jumpTime = 500
-    this.jumpHeight = 500
-    this.personImg = new Image()
-    this.personImg.src = 'img/person1.png'
-    this.personImg1 = new Image()
-    this.personImg1.src = 'img/person2.png'
-    this.personImg2 = new Image()
-    this.personImg2.src = 'img/person3.png'
-    this.img = 0
-    this.pic = [this.personImg, this.personImg1]
+    this.StepImg1 = new Image()
+    this.StepImg1.src = 'img/person1.png'
+    this.StepImg2 = new Image()
+    this.StepImg2.src = 'img/person2.png'
+    this.JumpImg = new Image()
+    this.JumpImg.src = 'img/person3.png'
+    this.transPic = false
+    
+    this.step = 0
+    this.pic = [this.StepImg1, this.StepImg2]
     setInterval(() => {
-      this.img = this.img ? 0 : 1
+      this.step = this.step ? 0 : 1
     }, 1000 / 60 * 20)
   }
-  draw(drawer){
-    this.drawRoad(drawer)
-  }
-  drawRoad(drawer){
-    if ( this.y < 300 ){
-      drawer.ctx.drawImage( this.personImg2,0, 0, this.pwidth, this.pheight,this.x, this.y, this.renderWidth, this.renderHeight);
-    } else {
-      drawer.ctx.drawImage( this.pic[this.img],0, 0, this.pwidth, this.pheight,this.x, this.y, this.renderWidth, this.renderHeight);
+  draw (drawer) {
+    if (!this.transPic) {
+      if (this.y < 300) {
+        drawer.ctx.drawImage(this.JumpImg, this.x, this.y, this.width, this.height)
+      } else {
+        drawer.ctx.drawImage(this.pic[this.step], this.x, this.y, this.width, this.height)
+      }
     }
   }
   jump () {
     // this.jumpHeight = voice
-    let loopTime = this.jumpTime / (1000 / 60)
+    let loopTime = this.jumpDuration / (1000 / 60)
     let loopHeight = this.jumpHeight / loopTime / 2
     console.log('jump')
     for(let i = 0; i < loopTime; i++) {
@@ -52,7 +50,22 @@ class Character {
       }, 1000/60 * i)
     }
   }
-  nextTick () {
-
+  harm () {
+    if (this.harmable) {
+      let invincibleFrame = 100
+      for(let i = 0; i < invincibleFrame; i = i + invincibleFrame / 6) {
+        setTimeout(() => {
+          this.transPic = !this.transPic
+        }, 1000/60 * i)
+      }
+      setTimeout(() => {
+        this.transPic = false
+      }, 1000 / 60 * invincibleFrame)
+      this.harmable = false
+      this.life--
+      setTimeout(() => {
+        this.harmable = true
+      }, 1000/60 * invincibleFrame)
+    }
   }
 }

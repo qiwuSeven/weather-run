@@ -5,7 +5,14 @@ class Drawer {
     this.running = false
     this.width = this.el.width
     this.height = this.el.height
-    this.character = new Character()
+    this.character = new Character({
+      x: 140,
+      y: 330,
+      height: 75,
+      width: 60,
+      jumpDuration: 700,
+      jumpHeight: 300
+    })
     this.blocks = new Blocks()
     this.backGround = new BackGround()
     this.backGroundSpeed = 3
@@ -13,13 +20,16 @@ class Drawer {
   draw (x) {
     this.ctx.clearRect(0, 0, 500, 500)
     this.backGround.draw(this)
-    this.blocks.move()
+    this.blocks.draw(this)
     this.character.draw(this)
-    this.drawBlocks()
-    this.ctx.strokeRect(50, 50, 400, 200)
 
+    console.log(this.character.life)
     if (this.isCrash()) {
-      this.onFinish()
+      this.character.harm()
+      this.onCrush()
+    }
+    if (this.character.life === 0) {
+      this.stop()
     }
     if (this.running) {
       window.requestAnimationFrame(this.draw.bind(this))
@@ -34,21 +44,27 @@ class Drawer {
   }
   isCrash () {
     let r = false
-    this.blocks._blocks.map((item) => {
-      if (crash(item, this.character)) {
+    this.blocks.muds.map((item) => {
+      if (crash({
+        x: item.x + 20,
+        y: item.y + 1,
+        width: item.width - 40,
+        height: item.height - 1,
+      }, this.character)) {
         r = true
       }
     })
     return r
   }
-  onFinish () {
-
-  }
-  drawBlocks () {
-    this.ctx.fillStyle = 'green'
-    this.blocks._blocks.map((item) => {
-      this.ctx.fillRect(item.x, item.y, item.width, item.height)
-    })
+  onFinish () {}
+  onCrush () {}
+  startBlocks () {
+    this.blocks.muds.push({
+          width: 50,
+          height: 20,
+          x: 500,
+          y: 300 - 20,
+        })
   }
 }
 function crash (r1, r2) {
