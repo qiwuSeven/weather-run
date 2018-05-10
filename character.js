@@ -13,7 +13,7 @@ class Character {
     this.y = 350 - 20
     this.height = 70
     this.width = 70
-    this.jumpTime = 500
+    this.jumpTime = 700
     this.jumpHeight = 500
     this.personImg = new Image()
     this.personImg.src = 'img/person1.png'
@@ -31,7 +31,7 @@ class Character {
     this.drawRoad(drawer)
   }
   drawRoad(drawer){
-    if(this.y<300){
+    if ( this.y < 300 ){
       drawer.ctx.drawImage( this.personImg2,0, 0, this.pwidth, this.pheight,this.x, this.y, this.renderWidth, this.renderHeight);
     } else {
       drawer.ctx.drawImage( this.pic[this.img],0, 0, this.pwidth, this.pheight,this.x, this.y, this.renderWidth, this.renderHeight);

@@ -8,18 +8,16 @@ class Drawer {
     this.character = new Character()
     this.blocks = new Blocks()
     this.backGround = new BackGround()
-    this.backgroundOffSet = 0
+    this.backGroundSpeed = 3
   }
   draw (x) {
     this.ctx.clearRect(0, 0, 500, 500)
-    this.drawBackGround()
-    this.blocks.move('left')
-    this.drawBlocks()
-
+    this.backGround.draw(this)
+    this.blocks.move()
     this.character.draw(this)
+    this.drawBlocks()
+    this.ctx.strokeRect(50, 50, 400, 200)
 
-    // this.ctx.fillStyle = 'red'
-    // this.ctx.fillRect(this.character.x, this.character.y, this.character.width, this.character.height)
     if (this.isCrash()) {
       this.onFinish()
     }
@@ -45,9 +43,6 @@ class Drawer {
   }
   onFinish () {
 
-  }
-  drawBackGround () {
-    this.backGround.draw(this)
   }
   drawBlocks () {
     this.ctx.fillStyle = 'green'
