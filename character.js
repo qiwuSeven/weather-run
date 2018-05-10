@@ -2,18 +2,18 @@ class Character {
   constructor () {
 
     // 图像绘制时的坐标和大小
-    this.renderWidth = 70;
-    this.renderHeight = 70;
+    this.renderWidth = 60;
+    this.renderHeight = 75;
     // 求一个人的宽和高
-    this.pwidth = 300;
-    this.pheight = 300;       
+    this.pwidth = 171;
+    this.pheight = 227;       
     this.currentFrame = 1;
 
     this.x = 240
     this.y = 350 - 20
-    this.height = 70
-    this.width = 70
-    this.jumpTime = 700
+    this.height = 75
+    this.width = 60
+    this.jumpTime = 500
     this.jumpHeight = 500
     this.personImg = new Image()
     this.personImg.src = 'img/person1.png'
