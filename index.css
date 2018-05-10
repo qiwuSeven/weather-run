@@ -1,0 +1,106 @@
+/*生命值*/
+#control{
+
+    position: relative;
+    top: 60px;
+    height: 50px;
+    width: 500px;
+    border: 1px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+p{
+    margin: 5px;
+    width: 120px;
+    color: #000;
+}
+#control > .heart{
+    width: 250px;
+    display: flex;
+}
+li{
+    list-style:none;
+    margin:  0 5px;
+}
+#control > .heart > li{
+    height: 30px;
+    width: 30px;
+    background-image: url("./img/heart2.png");
+    background-size: 100%;
+}
+#control > .heart > .heart1{
+    background-image: url("./img/heart1.png");
+}
+
+/*进度条*/
+/*.sensitivity{*/
+    /*width: 150px;*/
+    /*position: relative;*/
+/*}*/
+/*.line{*/
+    /*width: 100%;*/
+    /*height: 2px;*/
+    /*background-color: #cccccc;*/
+    /*border-radius: 1px;*/
+    /*overflow: hidden;*/
+/*}*/
+/*.progress{*/
+    /*height: 2px;*/
+    /*width: 50%;*/
+    /*background-color: #57A3F3;*/
+    /*-webkit-transition: all .2s;*/
+    /*-moz-transition: all .2s;*/
+    /*-ms-transition: all .2s;*/
+    /*-o-transition: all .2s;*/
+    /*transition: all .2s;*/
+/*}*/
+/*.dot{*/
+    /*cursor: pointer;*/
+    /*height: 6px;*/
+    /*width: 6px;*/
+    /*border: 2px solid #57A3F3;*/
+    /*box-sizing: border-box;*/
+    /*background-color: #ffffff;*/
+    /*border-radius: 50%;*/
+    /*position: absolute;*/
+    /*top: -2px;*/
+    /*left: calc(50% - 3px);*/
+    /*-webkit-transition: all .2s;*/
+    /*-moz-transition: all .2s;*/
+    /*-ms-transition: all .2s;*/
+    /*-o-transition: all .2s;*/
+    /*transition: all .2s;*/
+/*}*/
+/*.dot:hover{*/
+    /*cursor: pointer;*/
+    /*height: 8px;*/
+    /*width: 8px;*/
+    /*top: -3px;*/
+    /*left: calc(50% - 4px);*/
+/*}*/
+
+.scroll{
+    margin: 15px;
+    width: 500px;
+    height: 5px;
+    background: #ccc;
+    position: relative;
+}
+.bar{
+    width: 10px;
+    height: 20px;
+    background: #369;
+    position: absolute;
+    top: -7px;
+    left: 0;
+    cursor: pointer;
+}
+.mask{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #369;
+    width: 0;
+    height: 5px;
+}
