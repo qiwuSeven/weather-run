@@ -32,7 +32,7 @@ class Blocks {
   }
   init () {
     this.muds = []
-    for (let i = 0; i < 3; i = i + 1) {
+    for (let i = 0; i < 1; i = i + 1) {
       this.muds.push({
         width: 100,
         height: 40,

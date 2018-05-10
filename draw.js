@@ -6,7 +6,7 @@ class Drawer {
         this.shellScreen.state = 'running'
         this.blocks.init()
       } else if (this.shellScreen.state === 'stop') {
-        this.character.life = 5
+        this.character.init()
         this.blocks.init()
         this.draw()
         this.shellScreen.state = 'running'
@@ -29,6 +29,7 @@ class Drawer {
     this.backGround = new BackGround()
     this.shellScreen = new ShellScreen()
     
+
     this.backGroundSpeed = 3
   }
   draw (x) {

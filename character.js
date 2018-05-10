@@ -12,6 +12,10 @@ class Character {
     this.harmable = true
     this.life = 5
 
+    
+    this.constol = new Control();
+    this.constol.render();
+
     this.StepImg1 = new Image()
     this.StepImg1.src = 'img/person1.png'
     this.StepImg2 = new Image()
@@ -52,6 +56,7 @@ class Character {
   }
   harm () {
     if (this.harmable) {
+      this.constol.reduceHeart(1)
       let invincibleFrame = 100
       for(let i = 0; i < invincibleFrame; i = i + invincibleFrame / 6) {
         setTimeout(() => {
@@ -67,5 +72,9 @@ class Character {
         this.harmable = true
       }, 1000/60 * invincibleFrame)
     }
+  }
+  init () {
+    this.life = 5
+    this.constol.addHeart(5)
   }
 }

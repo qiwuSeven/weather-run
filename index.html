@@ -31,15 +31,10 @@
     <!--</div>-->
     <div class="score"></div>
 </div>
-    <div id="star">
-        <p>Running Pig</p>
-    </div>
 <canvas id="screen" width="500px" height="500px"></canvas>
 <script>
 	let game = new Game('screen');
 	let sound = new Sound();
-	let constol = new Control();
-	constol.render();
 	sound.startSound(game, 3);
 	game.addEventListener('finish', () => {
 		sound.stopSound();

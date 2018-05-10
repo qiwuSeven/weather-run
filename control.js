@@ -26,6 +26,7 @@ class Control {
 
 	addHeart(num) {
 		this.hearts = this.hearts === this.maxHeart ? this.hearts : this.hearts + num;
+		this.reloadHeart();
 	}
 
 	reduceHeart(num) {
