@@ -13,8 +13,24 @@
     <script src="shellScreen.js"></script>
     <script src="main.js"></script>
     <script src="sound.js"></script>
+    <script src="control.js"></script>
 </head>
 <body>
+<div id="control">
+    <div class="heart"></div>
+    <p>灵敏度</p>
+    <div class="scroll" id="scroll">
+        <div class="bar" id="bar"></div>
+        <div class="mask" id="mask"></div>
+    </div>
+    <!--<div class="sensitivity" id="sensitivity">-->
+        <!--<div class="line" id="line">-->
+            <!--<div class="progress" id="progress"></div>-->
+        <!--</div>-->
+        <!--<div class="dot"></div>-->
+    <!--</div>-->
+    <div class="score"></div>
+</div>
     <div id="star">
         <p>Running Pig</p>
     </div>
@@ -22,6 +38,8 @@
 <script>
 	let game = new Game('screen');
 	let sound = new Sound();
+	let constol = new Control();
+	constol.render();
 	sound.startSound(game, 3);
 	game.addEventListener('finish', () => {
 		sound.stopSound();
