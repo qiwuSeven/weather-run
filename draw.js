@@ -1,6 +1,18 @@
 class Drawer {
   constructor (id) {
     this.el = document.getElementById(id)
+    this.el.addEventListener('click', () => {
+      if (this.shellScreen.state === 'start') {
+        this.shellScreen.state = 'running'
+        this.blocks.init()
+      } else if (this.shellScreen.state === 'stop') {
+        this.character.life = 5
+        this.blocks.init()
+        this.draw()
+        this.shellScreen.state = 'running'
+        this.start()
+      }
+    })
     this.ctx = this.el.getContext('2d')
     this.running = false
     this.width = this.el.width
@@ -15,15 +27,18 @@ class Drawer {
     })
     this.blocks = new Blocks()
     this.backGround = new BackGround()
+    this.shellScreen = new ShellScreen()
+    
     this.backGroundSpeed = 3
   }
   draw (x) {
+    console.log(this.backGroundSpeed)
     this.ctx.clearRect(0, 0, 500, 500)
     this.backGround.draw(this)
     this.blocks.draw(this)
     this.character.draw(this)
+    this.shellScreen.draw(this)
 
-    console.log(this.character.life)
     if (this.isCrash()) {
       this.character.harm()
       this.onCrush()
@@ -40,6 +55,9 @@ class Drawer {
     window.requestAnimationFrame(this.draw.bind(this))
   }
   stop () {
+    this.draw.bind(this)
+    this.shellScreen.state = 'stop'
+    this.shellScreen.drawFinishScreen(this)
     this.running = false
   }
   isCrash () {

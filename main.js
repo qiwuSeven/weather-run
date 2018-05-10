@@ -19,7 +19,7 @@ class Game {
     }
   }
   start () {
-    console.log(2)
+    this.drawer.start()
   }
   stop () {
     this.drawer.stop()
@@ -28,7 +28,7 @@ class Game {
 
   }
   replay () {
-    
+
   }
   jump () {
     this.drawer.character.jump()
