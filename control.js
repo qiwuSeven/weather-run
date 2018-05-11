@@ -3,7 +3,7 @@ class Control {
 		this.maxHeart = 5;
 		this.hearts = this.maxHeart;
 		// this.progress = 0;
-		this.barleft = 73;
+		this.barleft = 200;
 	}
 
 	render() {

@@ -24,8 +24,8 @@ class Blocks {
     }
     init() {
         this.muds = []
-        this.muds.push(new Block(0, 700  + getRandomNum(-20, 20), 380 + getRandomNum(-10, 10)))
-        this.muds.push(new Block(1, 600  + getRandomNum(-20, 20), 220 + getRandomNum(-10, 10)))
+        this.muds.push(new Block(0, 1000 + getRandomNum(-20, 20), 380 + getRandomNum(-10, 10)))
+        this.muds.push(new Block(1, 900 + getRandomNum(-20, 20), 220 + getRandomNum(-10, 10)))
     }
 }
 
