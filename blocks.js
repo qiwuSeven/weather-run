@@ -23,8 +23,9 @@ class Blocks {
         })
     }
     init() {
+        this.muds = []
         this.muds.push(new Block(0, 700  + getRandomNum(-20, 20), 380 + getRandomNum(-10, 10)))
-        this.muds.push(new Block(1, 600  + getRandomNum(-20, 20), 200 + getRandomNum(-10, 10)))
+        this.muds.push(new Block(1, 600  + getRandomNum(-20, 20), 220 + getRandomNum(-10, 10)))
     }
 }
 
@@ -62,8 +63,8 @@ Blocks.type = [{
     speedx: 3,
     speedy: 0
 }, {
-  width: 50,
-  height: 82,
+  width: 30,
+  height: 50,
   src: 'img/light1.png',
   speedx: 4,
   speedy: 0
