@@ -7,12 +7,12 @@ class Blocks {
     this.muds = []
     this.heart = []
   }
-  move () {
+  move (speed) {
     this.muds.map((item, index) => {
       if (item.x < 0 - item.width) {
-        item.x = 500 + parseInt(Math.random() * 100)
+        item.x = 500 + parseInt(Math.random() * 500)
       }
-      item.x -= 3
+      item.x -= speed
     })
     // this.heart.map(() => {
     //   if (item.x < 0 - item.width) {
@@ -23,8 +23,7 @@ class Blocks {
     // })
   }
   draw (drawer) {
-
-    this.move()
+    this.move(drawer.backGroundSpeed)
     drawer.ctx.fillStyle = 'pink'
     this.muds.map((item) => {
       drawer.ctx.drawImage(this.mudImg, item.x, item.y, item.width, item.height)
@@ -32,7 +31,7 @@ class Blocks {
   }
   init () {
     this.muds = []
-    for (let i = 0; i < 1; i = i + 1) {
+    for (let i = 0; i < 2; i = i + 1) {
       this.muds.push({
         width: 100,
         height: 40,

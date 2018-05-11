@@ -3,7 +3,7 @@ class Control {
 		this.maxHeart = 5;
 		this.hearts = this.maxHeart;
 		// this.progress = 0;
-		this.barleft = 100;
+		this.barleft = 73;
 	}
 
 	render() {
@@ -119,7 +119,7 @@ class Control {
 	getScroll(){
 		let scroll = document.getElementById('scroll');
 		let bar = document.getElementById('bar');
-		return parseInt(this.barleft/(scroll.offsetWidth-bar.offsetWidth) * 100) + "%";
+		return parseInt(this.barleft/(scroll.offsetWidth-bar.offsetWidth)) * 15;
 	}
 	//积分
 

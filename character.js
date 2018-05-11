@@ -1,6 +1,6 @@
 class Character {
-  constructor (option) {
-    ;({
+  constructor(option) {
+    ; ({
       x: this.x,
       y: this.y,
       height: this.height,
@@ -14,8 +14,8 @@ class Character {
 
     this.score = 0
 
-    this.constol = new Control();
-    this.constol.render();
+    this.control = new Control()
+    this.control.render();
 
     this.StepImg1 = new Image()
     this.StepImg1.src = 'img/person1.png'
@@ -24,7 +24,7 @@ class Character {
     this.JumpImg = new Image()
     this.JumpImg.src = 'img/person3.png'
     this.transPic = false
-    
+
     this.step = 0
     this.pic = [this.StepImg1, this.StepImg2]
     setInterval(() => {
@@ -49,24 +49,24 @@ class Character {
     let loopTime = this.jumpDuration / (1000 / 60)
     let loopHeight = this.jumpHeight / loopTime / 2
     console.log('jump')
-    for(let i = 0; i < loopTime; i++) {
+    for (let i = 0; i < loopTime; i++) {
       setTimeout(() => {
         if (i < loopTime / 2) {
           this.y -= loopHeight
         } else {
           this.y += loopHeight
         }
-      }, 1000/60 * i)
+      }, 1000 / 60 * i)
     }
   }
   harm () {
     if (this.harmable) {
-      this.constol.reduceHeart(1)
+      this.control.reduceHeart(1)
       let invincibleFrame = 100
-      for(let i = 0; i < invincibleFrame; i = i + invincibleFrame / 6) {
+      for (let i = 0; i < invincibleFrame; i = i + invincibleFrame / 6) {
         setTimeout(() => {
           this.transPic = !this.transPic
-        }, 1000/60 * i)
+        }, 1000 / 60 * i)
       }
       setTimeout(() => {
         this.transPic = false
@@ -75,15 +75,18 @@ class Character {
       this.life--
       setTimeout(() => {
         this.harmable = true
-      }, 1000/60 * invincibleFrame)
+      }, 1000 / 60 * invincibleFrame)
     }
   }
   init () {
     this.life = 5
     this.score = 0
-    this.constol.addHeart(5)
+    this.control.addHeart(5)
   }
   startCount () {
     this.score = -1
+  }
+  getLM () {
+    return this.control.getScroll()
   }
 }

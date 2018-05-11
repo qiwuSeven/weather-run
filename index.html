@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Running Pig</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="index.css">
     <script src="draw.js"></script>
     <script src="background.js"></script>
@@ -33,12 +33,9 @@
 </div>
 <canvas id="screen" width="500px" height="500px"></canvas>
 <script>
-	let game = new Game('screen');
-	let sound = new Sound();
-	sound.startSound(game, 3);
+	let game = new Game('screen')
 	game.addEventListener('finish', () => {
-		sound.stopSound();
-		console.log('finish')
+		game.sound.stopSound()
 	});
 	document.addEventListener('keydown', game.start())
 </script>

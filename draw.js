@@ -1,19 +1,7 @@
 class Drawer {
-  constructor (id) {
-    this.el = document.getElementById(id)
-    this.el.addEventListener('click', () => {
-      if (this.shellScreen.state === 'start') {
-        this.character.startCount()
-        this.shellScreen.state = 'running'
-        this.blocks.init()
-      } else if (this.shellScreen.state === 'stop') {
-        this.character.init()
-        this.blocks.init()
-        this.draw()
-        this.shellScreen.state = 'running'
-        this.start()
-      }
-    })
+  constructor (game) {
+    this.el = game.el
+
     this.ctx = this.el.getContext('2d')
     this.running = false
     this.width = this.el.width
@@ -31,10 +19,9 @@ class Drawer {
     this.shellScreen = new ShellScreen()
     
 
-    this.backGroundSpeed = 3
+    this.backGroundSpeed = 7
   }
   draw (x) {
-    console.log(this.backGroundSpeed)
     this.ctx.clearRect(0, 0, 500, 500)
     this.backGround.draw(this)
     this.blocks.draw(this)
@@ -55,15 +42,28 @@ class Drawer {
       window.requestAnimationFrame(this.draw.bind(this))
     }
   }
-  start () {
+  init () {
     this.running = true
     window.requestAnimationFrame(this.draw.bind(this))
   }
-  stop () {
+  start () {
+    this.character.startCount()
+    this.shellScreen.state = 'running'
+    this.blocks.init()
+  }
+  reStart () {
+    this.character.init()
+    this.blocks.init()
+    this.draw()
+    this.shellScreen.state = 'running'
+    this.init()
+  }
+  stop (gamer) {
     this.draw.bind(this)
     this.shellScreen.state = 'stop'
     this.shellScreen.drawFinishScreen(this)
     this.running = false
+    this.onFinish()
   }
   isCrash () {
     let r = false
