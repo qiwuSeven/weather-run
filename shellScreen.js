@@ -14,5 +14,6 @@ class ShellScreen {
   drawFinishScreen (drawer) {
     drawer.ctx.font = "48px serif"
     drawer.ctx.fillText('GAME OVER', 125, 150)
+    drawer.ctx.fillText('点击画面重新开始', 35, 300)
   }
 }

@@ -13,6 +13,7 @@ class Game {
         this.drawer.start()
       } else if (this.state === 'stop') {
         this.sound.startSound(this, this.LM)
+        console.log(this.LM)
         this.drawer.reStart()
       }
       this.state = 'running'
@@ -47,6 +48,7 @@ class Game {
     this.drawer.character.jump()
   }
   setSound () {
+    console.log('灵敏度', this.drawer.character.getLM())
     this.LM = this.drawer.character.getLM()
   }
 }
