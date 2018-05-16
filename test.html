@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<div id="control">
+    <div class="sensitivity" id="sensitivity">
+        <div class="line" id="line">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="dot"></div>
+    </div>
+
+</div>
+<input id="input" type="text">
+<script src="./Slide.js"></script>
+<script>
+    let a = new Slide();
+    a.render(change);
+
+    //为了监听滑动条改变
+    function change() {
+	    document.querySelector("#input").value = parseInt(a.getPercentage());
+    }
+
+    //监听输入框改变
+    document.querySelector("#input").onkeyup = ()=>{
+    	a.setData(document.querySelector("#input").value)
+    }
+</script>
+</body>
+</html>
