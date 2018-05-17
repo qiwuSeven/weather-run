@@ -1,4 +1,4 @@
-class Slide {
+/*class Slide {
 	constructor(){
 		this.data = 0;
 	}
@@ -41,8 +41,8 @@ class Slide {
 			this.data = 100;
 		}
 		let sensitivityWidth = document.getElementById("sensitivity").offsetWidth;
-		this.setDot(this.data * sensitivityWidth * 0.01 - 3 + 'px');
-		this.setProgress(this.data * sensitivityWidth * 0.01 + "px");
+		Slide.setDot(this.data * sensitivityWidth * 0.01 - 3 + 'px');
+		Slide.setProgress(this.data * sensitivityWidth * 0.01 + "px");
 	}
 
 	//通过坐标来设置进度
@@ -79,62 +79,97 @@ class Slide {
 //
 //58：34
 
+*/
 
-
-
-// class Slide {
-// 	constructor(){
-// 		this.data = 0;
+//这里是自定义事件
+// let myEvent = new CustomEvent("userLogin", {
+// 	detail: {
+// 		username: "davidwalsh"
 // 	}
+// });
+//
+// document.addEventListener("userLogin",(e)=>{
+// 	console.log(e)
+// })
+//
+// // 触发它！
+// document.dispatchEvent(myEvent);
 
-// 	setData(data){
-// 		this.data = data;
-// 		this.setPercentage()
-// 	}
 
-// 	render(cb){
-// 		this.clickDot(cb);
-// 	}
+class Slide {
+	constructor(dot, progress, father) {
+		this.data = 0;
+		//判断是否存在
+		this.dot = dot;
+		this.progress = progress;
+		//父组件
+		this.father = father;
+	}
 
-// 	clickDot(callback) {
-// 		let sensitivity = document.getElementById("sensitivity");
-// 		document.querySelector(".sensitivity .dot").addEventListener("mousedown", (e) => {
-// 			document.onmousemove = (e) => {
-// 				//设置data
-// 				this.setData((e.clientX - sensitivity.offsetLeft)/sensitivity.offsetWidth*100);
-// 				callback()
-// 			};
-// 			document.onmouseup = () => {
-// 				document.onmousemove = null;
-// 			}
-// 		});
-// 	}
+	setData(data) {
+		this.data = data;
+		this.setPercentage()
+	}
 
-// 	//得到当前的百分数
-// 	getPercentage() {
-// 		return this.data;
-// 	}
+	render() {
+		this.clickDot();
+	}
 
-// 	//设置百分数来改变进度
-// 	setPercentage() {
-// 		if (this.data < 0) {
-// 			this.data = 0;
-// 		}
-// 		if (this.data > 100) {
-// 			this.data = 100;
-// 		}
-// 		let sensitivityWidth = document.getElementById("sensitivity").offsetWidth;
-// 		this.setDot(this.data * sensitivityWidth * 0.01 - 3 + 'px');
-// 		this.setProgress(this.data * sensitivityWidth * 0.01 + "px");
-// 	}
+	clickDot() {
+		let sensitivity = this.father.querySelector(".sensitivity");
+		let dot = this.father.querySelector(".sensitivity .dot");
+		//自定义事件，通过监听事件来重新渲染dom
+		const slideEvent = new CustomEvent("slide");
 
-// 	//设置点的位置
-// 	static setDot(position) {
-// 		document.querySelector(".dot").style.left = position;
-// 	}
+		dot.addEventListener("mousedown", (e) => {
+			this.father.onmousemove = (e) => {
+				//设置data
+				this.setData((e.clientX - sensitivity.offsetLeft) / sensitivity.offsetWidth * 100);
+				document.dispatchEvent(slideEvent);
+			};
+			this.father.onmouseup = () => {
+				this.father.onmousemove = null;
+			}
+		});
+	}
 
-// 	//设置进度的位置
-// 	static setProgress(position) {
-// 		document.getElementById("progress").style.width = position;
-// 	}
-// }
+
+	//设置百分数来改变进度
+	setPercentage() {
+		if (this.data < 0) {
+			this.data = 0;
+		}
+		if (this.data > 100) {
+			this.data = 100;
+		}
+		let sensitivityWidth = this.father.querySelector(".sensitivity").offsetWidth;
+
+		if (this.dot) {
+			this.setDot(this.data * sensitivityWidth * 0.01 - 3 + 'px');
+		}
+		if (this.progress) {
+			this.setProgress(this.data * sensitivityWidth * 0.01 + "px");
+		}
+	}
+
+	//得到当前的百分数
+	getPercentage() {
+		return this.data;
+	}
+
+	//设置点的位置
+	setDot(position) {
+		let dot = this.father.querySelector(".sensitivity .dot");
+		if (dot) {
+			dot.style.left = position;
+		}
+	}
+
+	//设置进度的位置
+	setProgress(position) {
+		let progress = this.father.querySelector(".sensitivity .progress");
+		if (progress) {
+			progress.style.width = position;
+		}
+	}
+}
